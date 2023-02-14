@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import React, {useState} from 'react';
 
 
-export default function AppForm() {
+export default function ConceitoComponente() {
   const [idade, setIdade] = useState('');
   const [resposta, setResposta] = useState('');
 
@@ -27,8 +27,10 @@ export default function AppForm() {
         <TouchableOpacity style={styles.button}  onPress={handleButtonPress}> 
           <Text style={styles.buttonText}>Analisar</Text> 
         </TouchableOpacity> 
-        <Text>{resposta}</Text>
+        
+       <Text style={styles.textResult}>{resposta}</Text>
       </View>
+      
       <StatusBar style="light" />
     </View> 
   );
@@ -36,7 +38,7 @@ export default function AppForm() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: '#D93600',
     alignItems: 'center',
   },
@@ -47,14 +49,18 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   inputContainer: {
-    flex: 1,
+    
     marginTop: 30,
     width: '90%',
-    height: '90%',
     padding: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     alignItems: 'stretch',
+    backgroundColor: '#fff',
+    height: '80%'
+
   },
   input: {
     marginTop: 10,
@@ -81,5 +87,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  textResult: {
+    color: '#000',
+    fontWeight: 'bold',
+    textAlign : 'center'
   }
 });
