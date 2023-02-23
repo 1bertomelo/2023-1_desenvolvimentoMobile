@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Hello from './Pages/Hello/Hello';
 import Page1 from './Pages/Page1/Page1';
 import Page2 from './Pages/Page2/Page2';
+import Imc from './Pages/Imc/Index';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App() {
       <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen  name="Hello" component={Hello} />
-        <Stack.Screen  name="Page1" component={Page1} />
+        <Stack.Screen  name="Imc" component={Imc} />
         <Stack.Screen  name="Page2" component={Page2} />
       </Stack.Navigator>
     </NavigationContainer>
