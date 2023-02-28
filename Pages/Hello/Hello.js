@@ -15,8 +15,8 @@ export default function Hello() {
         <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Imc')} > 
           <Text style={styles.buttonText} >Calcular IMC</Text> 
         </TouchableOpacity> 
-        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Page2')}  > 
-          <Text style={styles.buttonText}>Ir Page2</Text> 
+        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('JokesList')}  > 
+          <Text style={styles.buttonText}>Lista de Piadas</Text> 
         </TouchableOpacity> 
       </View>      
     </View> 
