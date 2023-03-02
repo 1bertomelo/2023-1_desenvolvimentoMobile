@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Hello from './Pages/Hello/Hello';
 import Imc from './Pages/Imc/Index';
 import JokesList from './Pages/JokesList/Index';
+import NewUser from './Pages/NewUser/Index';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen  name="Hello" component={Hello} />
         <Stack.Screen  name="Imc" component={Imc} />
         <Stack.Screen  name="JokesList" component={JokesList} />
+        <Stack.Screen  name="NewUser" component={NewUser} />
       </Stack.Navigator>
     </NavigationContainer>
   );
