@@ -9,7 +9,7 @@ import colors from '../../styles/colors';
 
 export default function MyButton(props) {
     return (
-        <RectButton  style={styles.MyButtonStyle}  {...props}>
+<RectButton  style={styles.MyButtonStyle}   {...props}>
             <Text style={styles.MyTextButtonStyle}>
                 {props.title}
             </Text>

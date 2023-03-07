@@ -10,11 +10,8 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 //import api from '../../Services/api';
-import OptionButton from '../../Components/OptionButton';
-
 
 import MyButton  from '../../Components/MyButton/Index';
-
 import LinkButton from '../../Components/LinkButton/Index';
 
 import colors from '../../styles/colors';
