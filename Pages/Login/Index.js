@@ -3,13 +3,11 @@ import {
     TextInput,
     StyleSheet,
     Text,
-    View,
-    FlatList,
-    Alert
+    View
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-//import api from '../../Services/api';
+import api from '../../ApiService/api';
 
 import MyButton  from '../../Components/MyButton/Index';
 import LinkButton from '../../Components/LinkButton/Index';
@@ -51,6 +49,7 @@ async function navigateToHome() {
         return;
     }
   //  setLoading(true);
+
     if(txtLogin == "h1" && txtSenha == "123"){
         await AsyncStorage.setItem('@nomeApp:userName', txtLogin);
         navigation.navigate('JokesList');    
@@ -76,6 +75,7 @@ return (
             placeholder="Login"
             onChangeText={text => setLogin(text)}
             value={txtLogin}
+        
         />
         <View style={styles.passwordContainer}>
             <TextInput

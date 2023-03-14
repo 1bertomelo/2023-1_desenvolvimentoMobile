@@ -1,12 +1,31 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity,   SafeAreaView,
     KeyboardAvoidingView,
     FlatList } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import colors from '../../styles/colors';
 import OptionButton from '../../Components/OptionButton';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../ApiService/api';
 
 export default function JokesList() {
+    const [userName, setUserName] = useState('');
+    const [jokesList, setJokesList] = useState([]);
+
+    async function loadStoreUserName() {
+        const user = await AsyncStorage.getItem('@nomeApp:userName') || '';
+        setUserName(user);
+    }
+
+    async function loadJokes(){
+       await api.get('/Jokes').then((response) => {
+             setJokesList(response.data);
+          });
+    }
+    
+    useEffect(() => {
+        loadJokes();   
+        loadStoreUserName();
+    }, []);
 
     const jokeArray = [
         {
@@ -33,12 +52,12 @@ export default function JokesList() {
                 <View style={styles.header}>
                    
                     <Text style={styles.question}>
-                        Escolha um Trocadilho e divirta-se:
+                        {userName} escolha um e divirta-se:
                     </Text>
                 </View>
                 <View style={styles.jokeListCss}>
                     <FlatList
-                        data={jokeArray}
+                        data={jokesList}
                         renderItem={({ item }) => (
                             <OptionButton title={item.title} />
                         )}

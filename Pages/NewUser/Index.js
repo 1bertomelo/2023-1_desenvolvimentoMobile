@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-//import api from '../../Services/api';
+import api from '../../ApiService/api';
 
 import MyButton  from '../../Components/MyButton/Index';
 import LinkButton from '../../Components/LinkButton/Index';
@@ -54,9 +54,18 @@ export default function NewUser() {
          setIconPass(icone);
      }
  
-     function handlePostNewStudent() {
-        camposPrenchidos();
+     async function handlePostNewStudent() {
+        if(camposPrenchidos()){
+            let objNewStudent = {
+                name: txtName,
+                password: txtPassword,
+                document: txtDocument,
+                login: txtEmail
+            };
 
+             const response = await api.post(`/Users`, objNewStudent);
+             alert('Usuario Criado!');
+        }
      }
  
      function camposPrenchidos(){
