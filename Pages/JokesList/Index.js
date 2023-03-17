@@ -12,20 +12,26 @@ export default function JokesList() {
     const [jokesList, setJokesList] = useState([]);
 
     async function loadStoreUserName() {
-        const user = await AsyncStorage.getItem('@nomeApp:userName') || '';
+        const user = await AsyncStorage.getItem('@nameApp:userName') || '';
         setUserName(user);
     }
 
     async function loadJokes(){
+        
        await api.get('/Jokes').then((response) => {
              setJokesList(response.data);
-          });
+          }).catch(err => console.log(err));
     }
     
-    useEffect(() => {
+    useEffect(
+    () => 
+    {
         loadJokes();   
         loadStoreUserName();
-    }, []);
+    }, 
+    []
+    
+    );
 
     const jokeArray = [
         {

@@ -13,7 +13,7 @@ import MyButton  from '../../Components/MyButton/Index';
 import LinkButton from '../../Components/LinkButton/Index';
 
 import colors from '../../styles/colors';
-//import Loading from '../../Components/Loading/Loading';
+import Loading from '../../Components/Loading/index';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -39,33 +39,36 @@ function handleChangeIcon() {
 }
 
 async function navigateToHome() {
-
+    setLoading(true);
     if (txtLogin.trim() === '') {
         alert('Campo login é obrigatório');
+        setLoading(false);
         return;
     }
     if (txtSenha.trim() === '') {
         alert('Campo senha é obrigatório');
+        setLoading(false);
         return;
     }
-  //  setLoading(true);
+   
 
     if(txtLogin == "h1" && txtSenha == "123"){
-        await AsyncStorage.setItem('@nomeApp:userName', txtLogin);
+        await AsyncStorage.setItem('@nameApp:userName', txtLogin);
         navigation.navigate('JokesList');    
     } else {
         alert('Usuario e/ou senha inválido!');
+        setLoading(false);
         return;
     }
-  //  setLoading(false);
+    setLoading(false);
 }
 
 function navigateToNewUser() {
     navigation.navigate('NewUser');
 }
-/*if (flLoading) {
+if (flLoading) {
     return (<Loading />);
-}*/
+}
 
 return (
     <View style={styles.container}>
