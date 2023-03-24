@@ -9,6 +9,8 @@ import Imc from './Pages/Imc/Index';
 import JokesList from './Pages/JokesList/Index';
 import NewUser from './Pages/NewUser/Index';
 import Login from './Pages/Login/Index';
+import Home from './Pages/Home/Index';
+
 
 const Stack = createStackNavigator();
 
@@ -21,6 +23,7 @@ export default function App() {
         <Stack.Screen  name="Hello" component={Hello} />
         <Stack.Screen  name="Imc" component={Imc} />
         <Stack.Screen  name="JokesList" component={JokesList} />
+        <Stack.Screen  name="Home" component={Home} />
         <Stack.Screen  name="NewUser" component={NewUser} />
       </Stack.Navigator>
     </NavigationContainer>

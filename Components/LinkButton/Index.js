@@ -29,14 +29,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius: 8,
         height: 50,
-        width: '70%',
+        width: '30%',
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 16
     },
     MyTextButtonStyle: {
         color: colors.redButton,
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold'
     },
 });

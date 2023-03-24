@@ -54,7 +54,7 @@ async function navigateToHome() {
 
     if(txtLogin == "h1" && txtSenha == "123"){
         await AsyncStorage.setItem('@nameApp:userName', txtLogin);
-        navigation.navigate('JokesList');    
+        navigation.navigate('Home');    
     } else {
         alert('Usuario e/ou senha inválido!');
         setLoading(false);
