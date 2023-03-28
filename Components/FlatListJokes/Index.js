@@ -64,8 +64,10 @@ const FlatListJokes = () => {
 
   const [search, setSearch] = useState('');
 
-  const filteredData = data.filter((item) =>
+  const filteredData = data.filter(
+    (item) =>
     item.nome.toLowerCase().includes(search.toLowerCase())
+    //select * from data where nome like '%%'
   );
 
   const renderItem = ({ item }) => (
@@ -90,7 +92,7 @@ const FlatListJokes = () => {
       ) : (
         noResultsComponent
       )}
-  
+  //if ternario  condicao ? V : F
 
     </View>
   );

@@ -10,6 +10,7 @@ import JokesList from './Pages/JokesList/Index';
 import NewUser from './Pages/NewUser/Index';
 import Login from './Pages/Login/Index';
 import Home from './Pages/Home/Index';
+import ExemploTab from './Pages/ExemploTab/Index';
 
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen  name="JokesList" component={JokesList} />
         <Stack.Screen  name="Home" component={Home} />
         <Stack.Screen  name="NewUser" component={NewUser} />
+        <Stack.Screen  name="ExemploTab" component={ExemploTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );

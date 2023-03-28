@@ -1,18 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native'
 
-export default function Page2() {
+export default function MyTabs() {
     const navigation = useNavigation();
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Page2</Text>
-      <View style={styles.inputContainer}> 
-         <Text style={styles.textResult}>Você está na page2</Text>        
-      </View>      
-    </View> 
-  );
+    return (
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      );
 }
 
 const styles = StyleSheet.create({

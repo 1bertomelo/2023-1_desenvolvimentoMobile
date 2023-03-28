@@ -9,10 +9,7 @@ export default function Page1() {
     <View style={styles.container}>
       <Text style={styles.title}>Page1</Text>
       <View style={styles.inputContainer}> 
-         <Text style={styles.textResult}>Olá</Text>
-         <TouchableOpacity style={styles.button}  onPress={()=>navigation.goBack()} > 
-          <Text style={styles.buttonText}>Voltar</Text> 
-        </TouchableOpacity> 
+         <Text style={styles.textResult}>Você está na Page1</Text>       
       </View>      
     </View> 
   );
