@@ -50,17 +50,34 @@ async function navigateToHome() {
         setLoading(false);
         return;
     }
-   
 
-    if(txtLogin == "h1" && txtSenha == "123"){
-        await AsyncStorage.setItem('@nameApp:userName', txtLogin);
-        navigation.navigate('ExemploTab');    
-    } else {
-        alert('Usuario e/ou senha inválido!');
-        setLoading(false);
-        return;
-    }
-    setLoading(false);
+    let resposta = 0;
+    await api.get(`/Users`).then((response) => {
+        //setJokesList(response.data);
+        resposta = response.data.length;
+        
+        if(resposta == 0){
+            alert('Usuario e/ou senha inválido!');
+            setLoading(false);
+            return;
+        } else {
+            AsyncStorage.setItem('@nameApp:userName', txtLogin);
+            alert('redirecionando para login');
+            navigation.navigate('ExemploTab');   
+            setLoading(false);
+    
+        }
+    
+ 
+     }).catch(err => alert(err));
+
+  /*  wait api.get(`/Users?name=${txtLogin}&password=${txtSenha}`).then((response) => {
+        //setJokesList(response.data);
+        resposta = response.data.length;
+        alert(response.data.length);
+     }).catch(err => alert(err));*/
+
+   
 }
 
 function navigateToNewUser() {
