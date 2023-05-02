@@ -62,8 +62,8 @@ async function navigateToHome() {
             return;
         } else {
             AsyncStorage.setItem('@nameApp:userName', txtLogin);
-            alert('redirecionando para login');
-            navigation.navigate('ExemploTab');   
+       //     alert('redirecionando para login');
+            navigation.navigate('HomeMenu');   
             setLoading(false);
     
         }
