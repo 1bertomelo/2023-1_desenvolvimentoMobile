@@ -17,6 +17,14 @@ import Loading from '../../Components/Loading/index';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { Formik } from 'formik';
+import * as yup from 'yup';
+
+const validationSchema = yup.object().shape({
+    login: yup.string().required('Login é obrigatório'),
+    password: yup.string().min(8, 'Senha deve conter no mínimo 8 caracteres').required('Senha é obrigatória'),
+  });
+
 const eye = 'eye';
 const eyeOff = 'eye-off';
 
@@ -31,6 +39,31 @@ const [txtSenha, setSenha] = useState('')
 const navigation = useNavigation();
 const [flLoading, setLoading] = useState(false)
 
+const handleLogin = async (values) => {
+        setLoading(true);
+        let resposta = 0;
+        
+        await api.get(`/Users`).then((response) => {
+        resposta = response.data.length;
+        
+        if(resposta == 0){
+            alert('Usuario e/ou senha inválido!');
+            setLoading(false);
+            return;
+        } else {
+      
+            AsyncStorage.setItem('@nameApp:userName', txtLogin);      
+            navigation.navigate('HomeMenu');   
+            setLoading(false);
+    
+        }
+    
+ 
+     }).catch(err => alert(err));
+
+}
+
+
 function handleChangeIcon() {
     let icone = iconPass == eye ? eyeOff : eye;
     let flShowPassAux = !flShowPass;
@@ -40,7 +73,7 @@ function handleChangeIcon() {
 
 async function navigateToHome() {
     setLoading(true);
-    if (txtLogin.trim() === '') {
+/*    if (txtLogin.trim() === '') {
         alert('Campo login é obrigatório');
         setLoading(false);
         return;
@@ -50,7 +83,7 @@ async function navigateToHome() {
         setLoading(false);
         return;
     }
-
+*/
     let resposta = 0;
     await api.get(`/Users`).then((response) => {
         //setJokesList(response.data);
@@ -70,14 +103,7 @@ async function navigateToHome() {
     
  
      }).catch(err => alert(err));
-
-  /*  wait api.get(`/Users?name=${txtLogin}&password=${txtSenha}`).then((response) => {
-        //setJokesList(response.data);
-        resposta = response.data.length;
-        alert(response.data.length);
-     }).catch(err => alert(err));*/
-
-   
+ 
 }
 
 function navigateToNewUser() {
@@ -88,21 +114,33 @@ if (flLoading) {
 }
 
 return (
-    <View style={styles.container}>
+    <Formik
+      initialValues={{ login: '', password: '' }}
+      validationSchema={validationSchema}
+      onSubmit={handleLogin}
+    >
+     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+
+        <View style={styles.container}>
         <Text style={styles.textTitle}>Seja bem vindo!</Text>
+
+
         <TextInput
             style={styles.textInput}
             placeholder="Login"
-            onChangeText={text => setLogin(text)}
-            value={txtLogin}
-        
+            onChangeText={handleChange('login')}
+            value={values.login}
+            onBlur={handleBlur('login')}
         />
+        {touched.login && errors.login && <Text style={styles.errorText}>{errors.login}</Text>}
+
         <View style={styles.passwordContainer}>
             <TextInput
                 style={styles.textInputPassword}
                 placeholder="Senha"
-                onChangeText={text => setSenha(text)}
-                value={txtSenha}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
                 secureTextEntry={flShowPass}
             />
             <Feather
@@ -113,16 +151,16 @@ return (
                 onPress={handleChangeIcon}
             />
         </View>
-
-        <MyButton title='Entrar' onPress={navigateToHome}
-
-        />
-
+        {touched.password && errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+        <MyButton title='Entrar' onPress={handleSubmit}     />
+     
         <LinkButton title='Inscrever-se'
             onPress={navigateToNewUser}
         />
 
     </View>
+   )}
+   </Formik>
 
 );
 }
@@ -179,6 +217,10 @@ passwordContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between'
 },
+errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
 iconEye: {
     paddingHorizontal: 8,
     marginTop: 6

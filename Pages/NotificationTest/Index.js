@@ -4,8 +4,6 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import axios from 'axios';
 
-import sendPushNotification from '../../ApiService/apiExpo'; // Importe a função sendPushNotification do arquivo que você definiu
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

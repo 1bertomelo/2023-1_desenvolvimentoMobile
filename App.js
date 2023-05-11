@@ -23,8 +23,8 @@ export default function App() {
   return (
       <NavigationContainer>
       <Stack.Navigator>          
-        <Stack.Screen  name="NotificationTest" component={NotificationTest} />      
         <Stack.Screen  name="Login" component={Login} />        
+        <Stack.Screen  name="NotificationTest" component={NotificationTest} />      
         <Stack.Screen  name="Hello" component={Hello} />
         <Stack.Screen  name="Imc" component={Imc} />
         <Stack.Screen  name="JokesList" component={JokesList} />
